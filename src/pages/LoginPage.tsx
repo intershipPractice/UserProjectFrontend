@@ -1,9 +1,13 @@
 import React from 'react';
+import LoginInput from '../components/LoginInput';
+import styles from './LoginPage.module.css';
 
 
 function LoginPage() {
   return (
-    <>로그인 페이지 입니다.</>
+    <div className={styles.container}>
+        <LoginInput/>
+    </div>
   );
 }
 
