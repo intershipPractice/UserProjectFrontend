@@ -15,15 +15,24 @@ function LoginInput() {
     e.preventDefault();
 
     try {
-      const response = await fetch('/api/v1/login', {
+      const formData = new FormData();
+            formData.append('email', email);
+            formData.append('password', password);
+
+      const response = await fetch('http://localhost:8000/api/v1/users/login', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json',},
-        body: JSON.stringify({ email, password }),
+        // headers: {'Content-Type': 'application/json',},
+        body: formData,
       });
-    
-      if(!response.ok){
+
+      if(response.ok){
+        alert("로그인 성공!")
+      }
+      if (!response.ok){
         alert("로그인 실패");
       }
+      console.log(response);
+
     }catch (error){
       alert("로그인 실패");
     }

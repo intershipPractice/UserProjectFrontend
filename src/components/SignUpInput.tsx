@@ -7,34 +7,45 @@ import Button from '@mui/material/Button';
 
 
 function SignUpInput() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [checkPassword, setCheckPassword] = useState("");
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    const [checkPassword, setCheckPassword] = useState<string>("");
     const [error, setError] = useState(false);
 
-    const handleSubmit = async(e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        
-        if (password !== checkPassword){
+    
+        if (password !== checkPassword) {
             setError(true);
-            alert("비밀번호를 확인하세요.")
+            alert("비밀번호를 확인하세요.");
         } else {
             setError(false);
+            const formData = new FormData();
+            formData.append('email', email);
+            formData.append('password', password);
+
             try {
-                const response = await fetch('/api/v1/signup', {
+                const response = await fetch('http://localhost:8000/api/v1/users/signup', {
                     method: 'POST',
-                    headers: {'Content-Type': 'application/json',},
-                    body: JSON.stringify({ email, password }),
-                    });
-                
-                    if(!response.ok){
-                    alert("회원가입 실패");
-                    }
-                }catch (error){
+                    //headers: { 'Content-Type': 'application/json' },
+                    body: formData,
+                });
+    
+                if (response.ok) {
+                    // 회원가입 성공 처리 (예: 성공 메시지, 페이지 이동 등)
+                    alert("회원가입 성공!");
+                } else {
+                    // 서버 응답이 실패일 때의 처리
                     alert("회원가입 실패");
                 }
+            } catch (error) {
+                // 네트워크 오류 등 비동기 요청 자체가 실패했을 때
+                console.error("Network error: ", error);
+                alert("회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
             }
-    }
+        }
+    };
+    
 
 
     return (
