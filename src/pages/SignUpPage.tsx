@@ -1,9 +1,13 @@
 import React from 'react';
+import SignUpInput from '../components/SignUpInput';
+import styles from './SignUpPage.module.css';
 
 
 function SignUpPage() {
   return (
-    <div>회원 가입 페이지 입니다.</div>
+    <div className={styles.container}>
+      <SignUpInput/>
+    </div>
   );
 }
 
