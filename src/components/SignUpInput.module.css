@@ -25,3 +25,14 @@
     margin: 10px;
 }
 
+.checkValidContainer{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    flex-direction: column;
+}
+
+.checkValidBtn{
+    cursor: pointer;
+}
+

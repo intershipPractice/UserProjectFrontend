@@ -20,14 +20,12 @@ function LoginInput() {
     e.preventDefault();
 
     try {
-      const formData = new FormData();
-            formData.append('email', email);
-            formData.append('password', password);
+
 
       const response = await fetch('http://localhost:8000/api/v1/users/login', {
         method: 'POST',
-        // headers: {'Content-Type': 'application/json',},
-        body: formData,
+        headers: {'Content-Type': 'application/json',},
+        body: JSON.stringify({email, password}),
       });
 
       if(response.ok){
