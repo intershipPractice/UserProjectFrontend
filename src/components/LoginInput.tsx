@@ -4,9 +4,14 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import {useState} from 'react';
+import { useDispatch} from 'react-redux';
+import { login, logout } from '../store/authSlice';
+import { useNavigate } from "react-router-dom";
 
 
 function LoginInput() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -26,7 +31,9 @@ function LoginInput() {
       });
 
       if(response.ok){
-        alert("로그인 성공!")
+        dispatch(login(email));
+        alert("로그인 성공!");
+        navigate("/main");
       }
       if (!response.ok){
         alert("로그인 실패");
