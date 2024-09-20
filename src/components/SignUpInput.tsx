@@ -108,10 +108,10 @@ function SignUpInput() {
                         label="이메일"
                         type="email"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => {setEmail(e.target.value); setValidEmail(false);}}
                         required
                     />
-                    <button className={styles.checkValidBtn} onClick={checkEmail}>중복 확인</button>
+                    <button className={styles.checkValidBtn} type="button" onClick={checkEmail}>중복 확인</button>
                 </div>
                 <br/>
                 <div className={styles.checkValidContainer}>
@@ -122,10 +122,10 @@ function SignUpInput() {
                         label="닉네임"
                         type="text"
                         value={nickname}
-                        onChange={(e) => setNickname(e.target.value)}
+                        onChange={(e) => {setNickname(e.target.value); setValidNickname(false);}}
                         required
                     />
-                <button className={styles.checkValidBtn} onClick={checkName}>중복 확인</button>
+                <button className={styles.checkValidBtn} type="button" onClick={checkName}>중복 확인</button>
                 </div>
                 <br/>
                 <TextField
