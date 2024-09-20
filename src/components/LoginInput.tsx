@@ -21,15 +21,17 @@ function LoginInput() {
 
     try {
 
-
       const response = await fetch('http://localhost:8000/api/v1/users/login', {
         method: 'POST',
         headers: {'Content-Type': 'application/json',},
         body: JSON.stringify({email, password}),
       });
 
+      const data = await response.json();
+      console.log(data);
       if(response.ok){
-        dispatch(login(email));
+        dispatch(login());
+        localStorage.setItem('access_token', data.access_token);
         alert("로그인 성공!");
         navigate("/main");
       }

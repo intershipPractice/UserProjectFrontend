@@ -13,13 +13,13 @@ function MainPage() {
   const navigate = useNavigate();
 
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
-  const useremail = useSelector((state: RootState) => state.auth.useremail);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
+    
   };
   const handleClose = () => {
     setAnchorEl(null);
@@ -27,6 +27,7 @@ function MainPage() {
 
   const handleLogout = () => {
     dispatch(logout())
+    localStorage.removeItem('access_token');
   }
 
   const gotoLogin = () => {
@@ -48,7 +49,7 @@ function MainPage() {
               'aria-labelledby': 'basic-button',
             }}
           >
-            <div className={styles.userInfoBox}>강서영님, 반가워요. <br/> {useremail}</div>
+            <div className={styles.userInfoBox}>!~hello~!</div>
             <MenuItem onClick={handleClose}>마이 페이지</MenuItem>
             <MenuItem onClick={handleLogout}>로그아웃</MenuItem>
           </Menu>
