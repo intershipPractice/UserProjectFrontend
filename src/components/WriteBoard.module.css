@@ -1,0 +1,66 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.title{
+    width: 80%;
+    display: flex;
+    margin: 10px;
+    justify-content: space-around;
+}
+
+.content{
+    width: 80%;
+    display: flex;
+    margin: 10px;
+    justify-content: space-around;
+}
+
+.titleArea{
+    width: 80%;
+    margin: 10px;
+    border: 1px solid #b2b2b2;
+    border-radius: 5px;
+}
+
+.titleArea:focus{
+    outline: none;
+}
+
+.contentArea{
+    width: 80%;
+    margin: 10px;
+    height: 500px;
+    border: 1px solid #b2b2b2;
+    border-radius: 5px;
+    resize: none;
+}
+
+.contentArea:focus{
+    outline: none;
+}
+
+p{
+    color: #5a5a5a;
+}
+
+.buttons{
+    width: 80%;
+    display: flex;
+    justify-content: end;
+}
+
+button{
+    width: 50px;
+    height: 30px;
+    margin: 8px;
+    border: 1px solid #b2b2b2;
+    border-radius: 20px;
+    background-color: transparent;
+    cursor: pointer;
+
+}

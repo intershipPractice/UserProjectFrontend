@@ -1,0 +1,55 @@
+.container{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.head{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: space-between;
+
+
+}
+table{
+    margin: 25px 0px;
+    border-collapse: collapse;
+    width: 80%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border: none;
+
+}
+
+thead{
+    background-color: #cdcdcd;
+    text-align: center;
+}
+
+tbody{
+    text-align: center;
+}
+
+
+tbody tr{
+    border-bottom: 1px solid #dddddd;
+    cursor: pointer;
+}
+
+tbody tr:hover{
+    background-color: #f0f0f0;
+}
+
+th, td{
+    padding: 12px 15px;
+}
+
+th:not(:first-child),td:not(:first-child) {
+  border-left: none; /* 세로선 제거 */
+}
+
+th:not(:last-child),td:not(:last-child) {
+  border-right: none; /* 세로선 제거 */
+}
