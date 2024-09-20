@@ -25,6 +25,7 @@
     margin: 10px;
     border: 1px solid #b2b2b2;
     border-radius: 5px;
+    font-size: 18px;
 }
 
 .titleArea:focus{
@@ -38,6 +39,7 @@
     border: 1px solid #b2b2b2;
     border-radius: 5px;
     resize: none;
+    font-size: 18px;
 }
 
 .contentArea:focus{
@@ -49,7 +51,7 @@ p{
 }
 
 .buttons{
-    width: 80%;
+    width: 75%;
     display: flex;
     justify-content: end;
 }
