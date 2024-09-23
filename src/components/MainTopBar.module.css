@@ -2,8 +2,13 @@
     width: 100%;
     height: 50px;
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     align-items: center;
+}
+
+.mainLogo{
+    margin: 10px;
+    cursor: pointer;
 }
 
 .loginBtn{

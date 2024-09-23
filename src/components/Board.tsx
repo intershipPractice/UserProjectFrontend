@@ -4,47 +4,63 @@ import { RootState } from '../store';
 import { useNavigate } from "react-router-dom";
 import styles from "./Board.module.css";
 import {BlogPost} from "../models/post.model";
+import {useState, useEffect} from 'react';
+import { GoPencil } from "react-icons/go";
+import ModifyPostModal from "./ModifyPostModal";
 
 interface BlogPostProps{
     postList: BlogPost[]; 
+    editBtn: boolean;
 }
 
-function Board({postList} : BlogPostProps) {
+function Board({postList, editBtn} : BlogPostProps) {
 
   const navigate = useNavigate();
-
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
 
-  const gotoWriteBoard = () => {
-    navigate('/write');
-  }
+  const [selectedPost, setSelectedPost] = React.useState<BlogPost | null>(null);
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = (post: BlogPost) => {
+    setSelectedPost(post); // 선택된 게시물 저장
+    setOpen(true); // 모달 열기
+};
+const handleClose = () => {
+    setOpen(false); // 모달 닫기
+    setSelectedPost(null); // 선택된 게시물 초기화
+};
+
 
   return (
-    <div className={styles.container}>
-        <div className={styles.head}>
-            <h3>게시글</h3>
-            <button onClick={gotoWriteBoard}>게시글 작성</button>
+    <div>
+            <div className={styles.container}>
+                {postList.length !== 0 ? postList.map((post) => (
+                    <div className={styles.postCard} key={post.id}>
+                        <div className={styles.postInfo}>
+                            <p className={styles.title}>{post.title}</p>
+                            <p>{post.content}</p>
+                            <p className={styles.nickname}>{post.userId} | {post.createdAt}</p>
+                            {editBtn && (
+                                <button onClick={() => handleOpen(post)}>
+                                    <GoPencil />
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                )) : <p>게시글이 없어요</p>}
+            </div>
+
+            {/* 선택된 게시물의 정보가 있을 때만 모달을 표시 */}
+            {selectedPost && open && (
+                <ModifyPostModal
+                    open={open}
+                    handleClose={handleClose}
+                    title={selectedPost.title}
+                    content={selectedPost.content}
+                    id={selectedPost.id}
+                />
+            )}
         </div>
-        
-        <table border={1} className={styles.table}>
-            <thead>
-                <tr>
-                    <th className={styles.title} style={{width:"60%"}}>제목</th>
-                    <th style={{width:"20%"}}>작성자</th>
-                    <th style={{width:"20%"}}>작성일</th>
-                </tr>
-            </thead>
-            <tbody>
-                {postList.reverse().map((post) => (
-                    <tr>
-                        <td className={styles.title}>{post.title}</td>
-                        <td>{post.userId}</td>
-                        <td>{post.createdAt}</td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
-    </div>
   );
 }
 

@@ -34,20 +34,6 @@ function MainTopBar() {
         .then(data=>{
             setUsername(data.nickname);
         })
-        
-            
-            const response = await fetch("http://localhost:8000/api/v1/users/profile", {
-                method: 'GET',
-                headers: {
-                    'Authorization' : `Bearer ${token}`
-                }
-            });
-            if (response.ok) {
-                const data = response.json();
-            } else {
-                // 서버 응답이 실패일 때의 처리
-                console.log(response);
-        } 
 
     };
     if(isLoggedIn) {getName(); }
@@ -70,16 +56,27 @@ function MainTopBar() {
   const handleLogout = () => {
     dispatch(logout())
     sessionStorage.removeItem('access_token');
+    navigate("/main");
   }
 
   const gotoLogin = () => {
     navigate("/login");
   }
+
+  const gotoMyPost = () => {
+    navigate("/mypost");
+  }
+
+  const gotoMain = () => {
+    navigate("/main");
+  }
+
   return (
 
       <div className={styles.container}>
+        <div className={styles.mainLogo} onClick={gotoMain}>HUSTATION</div>
       {isLoggedIn? (
-        <>{username} 님
+        <div className={styles.mainLogo}>{username} 님
           <button className={styles.profileBtn} onClick={handleClick}><AccountCircleIcon style={{width:"40px", height:"40px"}}/></button>
           <Menu
             id="basic-menu"
@@ -91,11 +88,11 @@ function MainTopBar() {
             }}
           >
             <MenuItem onClick={handleClose}>마이 페이지</MenuItem>
-            <MenuItem onClick={handleLogout}>내 게시물</MenuItem>
+            <MenuItem onClick={gotoMyPost}>내 게시물</MenuItem>
             <MenuItem onClick={handleLogout}>채팅</MenuItem>
             <MenuItem onClick={handleLogout}>로그아웃</MenuItem>
           </Menu>
-        </>
+        </div>
       ) : (
         <button className={styles.loginBtn} onClick={gotoLogin}>로그인</button>
       )}

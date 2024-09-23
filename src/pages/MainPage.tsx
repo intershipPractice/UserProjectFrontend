@@ -14,6 +14,10 @@ function MainPage() {
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
 
   const [posts, setPosts] = useState<BlogPost[]>([]);
+  
+  const gotoWriteBoard = () => {
+    navigate('/write');
+  }
 
   useEffect(()=> {
         fetch("http://localhost:8000/api/v1/blogs", {
@@ -26,7 +30,6 @@ function MainPage() {
             return response.json();
         })
         .then((data : BlogPost[])=>{
-          console.log(data);
           const postData = data.map((item ) => {
             return {
               id : item.id,
@@ -47,7 +50,8 @@ function MainPage() {
     <div className={styles.container}>
     <div className={styles.mainbox}>
       <MainTopBar/>
-      <Board postList={posts}/>
+      <button onClick={gotoWriteBoard}>글 작성</button>
+      <Board postList={posts} editBtn={false}/>
     </div>
     </div>
   );

@@ -28,7 +28,6 @@ function LoginInput() {
       });
 
       const data = await response.json();
-      console.log(data);
       if(response.ok){
         dispatch(login());
         sessionStorage.setItem('access_token', data.access_token);
@@ -38,7 +37,6 @@ function LoginInput() {
       if (!response.ok){
         alert("로그인 실패");
       }
-      console.log(response);
 
     }catch (error){
       alert("로그인 실패");
