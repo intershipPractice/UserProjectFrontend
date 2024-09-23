@@ -3,9 +3,14 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 import { useNavigate } from "react-router-dom";
 import styles from "./Board.module.css";
+import {BlogPost} from "../models/post.model";
 
+interface BlogPostProps{
+    postList: BlogPost[]; 
+}
 
-function Board() {
+function Board({postList} : BlogPostProps) {
+
   const navigate = useNavigate();
 
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
@@ -24,31 +29,19 @@ function Board() {
         <table border={1} className={styles.table}>
             <thead>
                 <tr>
-                    <th style={{width:"10%"}}>번호</th>
-                    <th style={{width:"50%"}}>제목</th>
+                    <th className={styles.title} style={{width:"60%"}}>제목</th>
                     <th style={{width:"20%"}}>작성자</th>
                     <th style={{width:"20%"}}>작성일</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>제목이에요</td>
-                    <td>나나나</td>
-                    <td>2024.05.08</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>제목테스트트트트</td>
-                    <td>나나나</td>
-                    <td>2024.05.08</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>제목이에요</td>
-                    <td>나나나</td>
-                    <td>2024.05.08</td>
-                </tr>
+                {postList.reverse().map((post) => (
+                    <tr>
+                        <td className={styles.title}>{post.title}</td>
+                        <td>{post.userId}</td>
+                        <td>{post.createdAt}</td>
+                    </tr>
+                ))}
             </tbody>
         </table>
     </div>

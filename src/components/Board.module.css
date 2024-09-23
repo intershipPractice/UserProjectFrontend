@@ -53,3 +53,8 @@ th:not(:first-child),td:not(:first-child) {
 th:not(:last-child),td:not(:last-child) {
   border-right: none; /* 세로선 제거 */
 }
+
+.title{
+    text-align: left;
+    padding: 0px 20px;
+}

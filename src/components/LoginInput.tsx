@@ -31,7 +31,7 @@ function LoginInput() {
       console.log(data);
       if(response.ok){
         dispatch(login());
-        localStorage.setItem('access_token', data.access_token);
+        sessionStorage.setItem('access_token', data.access_token);
         alert("로그인 성공!");
         navigate("/main");
       }

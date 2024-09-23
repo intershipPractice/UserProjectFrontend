@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // 세션 스토리지 사용
+import storageSession from 'redux-persist/lib/storage/session'; // 세션 스토리지 사용
 import authReducer from './authSlice'; // auth 리듀서 가져오기
 import { combineReducers } from 'redux';
 
 // Redux-persist 설정
 const persistConfig = {
   key: 'root', // 루트 키로 상태 저장
-  storage: storage, // 세션 스토리지 사용
+  storage: storageSession, // 세션 스토리지 사용
 };
 
 // 리듀서를 하나로 결합

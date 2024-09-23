@@ -16,7 +16,7 @@ function WriteBoard() {
   const handleSubmit = async (e:React.FormEvent) => {
     e.preventDefault();
 
-    const token = localStorage.getItem('access_token');
+    const token = sessionStorage.getItem('access_token');
 
     try {
         const response = await fetch('http://localhost:8000/api/v1/blogs', {

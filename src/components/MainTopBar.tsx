@@ -17,7 +17,7 @@ function MainTopBar() {
   useEffect(()=> {
     const getName = async () => {
 
-        const token = localStorage.getItem('access_token');
+        const token = sessionStorage.getItem('access_token');
 
         fetch("http://localhost:8000/api/v1/users/profile", {
             method: 'GET',
@@ -33,7 +33,6 @@ function MainTopBar() {
         })
         .then(data=>{
             setUsername(data.nickname);
-            console.log(data.nickname);
         })
         
             
@@ -51,7 +50,7 @@ function MainTopBar() {
         } 
 
     };
-    getName();
+    if(isLoggedIn) {getName(); }
 
   }, []);
 
@@ -70,7 +69,7 @@ function MainTopBar() {
 
   const handleLogout = () => {
     dispatch(logout())
-    localStorage.removeItem('access_token');
+    sessionStorage.removeItem('access_token');
   }
 
   const gotoLogin = () => {
