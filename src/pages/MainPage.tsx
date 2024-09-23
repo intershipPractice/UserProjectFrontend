@@ -19,6 +19,11 @@ function MainPage() {
     navigate('/write');
   }
 
+  // 게시물이 삭제되었을 때 호출되는 함수
+  const handleDeletePost = (id: number) => {
+    setPosts(posts.filter(post => post.id !== id)); // 삭제된 게시물 제거
+  };
+
   useEffect(()=> {
         fetch("http://localhost:8000/api/v1/blogs", {
             method: 'GET',
@@ -50,8 +55,8 @@ function MainPage() {
     <div className={styles.container}>
     <div className={styles.mainbox}>
       <MainTopBar/>
-      <button onClick={gotoWriteBoard}>글 작성</button>
-      <Board postList={posts} editBtn={false}/>
+      <button className={styles.writeBtn} onClick={gotoWriteBoard}>새 글 작성</button>
+      <Board postList={posts} editBtn={false} deletePost={handleDeletePost}/>
     </div>
     </div>
   );

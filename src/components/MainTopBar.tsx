@@ -76,8 +76,11 @@ function MainTopBar() {
       <div className={styles.container}>
         <div className={styles.mainLogo} onClick={gotoMain}>HUSTATION</div>
       {isLoggedIn? (
-        <div className={styles.mainLogo}>{username} 님
-          <button className={styles.profileBtn} onClick={handleClick}><AccountCircleIcon style={{width:"40px", height:"40px"}}/></button>
+        <div>
+          <div className={styles.user}>
+            <p>{username} 님</p>
+            <button className={styles.profileBtn} onClick={handleClick}><AccountCircleIcon style={{width:"40px", height:"40px"}}/></button>
+          </div>
           <Menu
             id="basic-menu"
             anchorEl={anchorEl}

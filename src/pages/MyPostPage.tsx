@@ -56,13 +56,18 @@ function MyPostPage() {
     
 }, []);
 
+  // 게시물이 삭제되었을 때 호출되는 함수
+  const handleDeletePost = (id: number) => {
+    setPosts(posts.filter(post => post.id !== id)); // 삭제된 게시물 제거
+  };
+
 
   return (
     <div className={styles.container}>
     <div className={styles.mainbox}>
       <MainTopBar/>
-      <>내 게시물</>
-      {isLoggedIn ? <Board postList={posts} editBtn={true}/> : <>로그인 후 이용하세요</>}
+      <p className={styles.header}>내 게시물</p>
+      {isLoggedIn ? <Board postList={posts} editBtn={true} deletePost={handleDeletePost}/> : <>로그인 후 이용하세요</>}
     </div>
     </div>
   );
