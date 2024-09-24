@@ -30,23 +30,26 @@ function MainPage() {
         })
         .then(response=>{
             if (!response.ok){
-                console.log("네트워크 응답이 정상적이지 않습니다.");
+                return [];
             }
             return response.json();
         })
         .then((data : BlogPost[])=>{
-          const postData = data.map((item ) => {
-            return {
-              id : item.id,
-              createdAt : item.createdAt,
-              isDelete : item.isDelete,
-              title : item.title,
-              content: item.content,
-              updatedAt : item.updatedAt,
-              userId : item.userId, 
-            }
-          });
-          setPosts(postData);
+          if (data.length !== 0){
+            const postData = data.map((item ) => {
+              return {
+                id : item.id,
+                createdAt : item.createdAt,
+                title : item.title,
+                content: item.content,
+                updatedAt : item.updatedAt,
+                nickname: item.nickname,
+              }
+            });
+            setPosts(postData);
+          } else{
+            setPosts([]);
+          }
           })
         
     }, []);

@@ -92,7 +92,6 @@ function MainTopBar() {
           >
             <MenuItem onClick={handleClose}>마이 페이지</MenuItem>
             <MenuItem onClick={gotoMyPost}>내 게시물</MenuItem>
-            <MenuItem onClick={handleLogout}>채팅</MenuItem>
             <MenuItem onClick={handleLogout}>로그아웃</MenuItem>
           </Menu>
         </div>

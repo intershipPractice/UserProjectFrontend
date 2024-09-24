@@ -38,11 +38,10 @@ function MyPostPage() {
           return {
             id : item.id,
             createdAt : item.createdAt,
-            isDelete : item.isDelete,
             title : item.title,
             content: item.content,
             updatedAt : item.updatedAt,
-            userId : item.userId, 
+            nickname: item.nickname,
           }
         });
         setPosts(postData);

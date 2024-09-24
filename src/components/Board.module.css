@@ -50,7 +50,7 @@
 }
 
 .postInfo{
-    margin: 20px;
+    margin: 20px 30px;
 }
 
 .postCard:hover{
@@ -60,16 +60,27 @@
 }
 
 .title{
-    font-size: 20px;
+    font-size: 23px;
     font-weight: 600;
+    height: 5vh;
+}
+
+.content{
+    height: 80%;
+    height: 30vh;
 }
 
 .nickname{
     font-size: 15px;
-    color: #acacac;
+    color: #b1b1b1;
 }
 
-.date{
-    font-size: 15px;
-    color: #acacac;
+.empty{
+    width: 100vw;
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: #aaaaaa;
 }

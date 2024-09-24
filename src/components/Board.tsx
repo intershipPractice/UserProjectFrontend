@@ -62,20 +62,23 @@ const handleDelete = (id: number) =>{
             {postList.length !== 0 ? postList.map((post) => (
                 <div className={styles.postCard} key={post.id}>
                     <div className={styles.postInfo}>
-                        <p className={styles.title}>{post.title}</p>
-                        <p>{post.content}</p>
-                        <p className={styles.nickname}>{post.userId} | {post.createdAt}</p>
-                        {editBtn && (
+                        <div className={styles.title}>{post.title}</div>
+                        <div className={styles.content}>{post.content}</div>
+                        <div className={styles.nickname}>
+                            {post.nickname && <>{post.nickname} | </> }
+                            <>{post.createdAt}</>
+                        </div>
+                        {editBtn ? (
                             <div>
                                 <button onClick={() => handleOpen(post)}>
                                     <GoPencil />
                                 </button>
                                 <button onClick={()=>handleDelete(post.id)}><FiTrash2/></button>
                             </div>
-                        )}
+                        ) : <></>}
                     </div>
                 </div>
-            )) : <p>게시글이 없어요</p>}
+            )) : <div className={styles.empty}>게시글이 없어요</div>}
         </div>
         {/* 선택된 게시물의 정보가 있을 때만 모달을 표시 */}
         {selectedPost && open && (
