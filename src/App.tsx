@@ -5,7 +5,7 @@ import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import WriteBoardPage from './pages/WriteBoardPage';
-import MyPostPage from './pages/MyPostPage';
+import MypagePage from './pages/MypagePage';
 
 
 
@@ -19,7 +19,7 @@ function App() {
           <Route path="/login" element={<LoginPage/>}/>
           <Route path="/join" element={<SignUpPage/>}/>
           <Route path="/write" element={<WriteBoardPage/>}/>
-          <Route path="/mypost" element={<MyPostPage/>}/>
+          <Route path="/mypage" element={<MypagePage/>}/>
         </Routes>
       </BrowserRouter>
     }

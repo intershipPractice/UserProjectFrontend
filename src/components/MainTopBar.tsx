@@ -71,6 +71,10 @@ function MainTopBar() {
     navigate("/main");
   }
 
+  const gotoMypage = () => {
+    navigate("/mypage");
+  }
+
   return (
 
       <div className={styles.container}>
@@ -90,8 +94,7 @@ function MainTopBar() {
               'aria-labelledby': 'basic-button',
             }}
           >
-            <MenuItem onClick={handleClose}>마이 페이지</MenuItem>
-            <MenuItem onClick={gotoMyPost}>내 게시물</MenuItem>
+            <MenuItem onClick={gotoMypage}>마이 페이지</MenuItem>
             <MenuItem onClick={handleLogout}>로그아웃</MenuItem>
           </Menu>
         </div>
