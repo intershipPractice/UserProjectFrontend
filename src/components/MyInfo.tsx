@@ -31,6 +31,11 @@ function MyInfo() {
     setEditing(!editing);
   }
 
+  const handleLogout = () => {
+    dispatch(logout())
+    sessionStorage.removeItem('access_token');
+    navigate("/main");
+  }
 
 
   useEffect(()=> {
@@ -184,7 +189,7 @@ const withdraw = () => {
         }
         </div>
         <div className={styles.BtnContainer}>
-            <div className={styles.logout}><IoIosLogOut className={styles.icon}/>로그아웃</div>
+            <div className={styles.logout}><IoIosLogOut className={styles.icon} onClick={handleLogout}/>로그아웃</div>
             <div className={styles.delete} onClick={withdraw}><IoBanOutline className={styles.icon}/> 회원 탈퇴</div>
         </div>
     </div>
