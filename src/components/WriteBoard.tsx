@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import MainTopBar from "../components/MainTopBar";
 import styles from "./WriteBoard.module.css";
 import {useState} from 'react';
+import { MdOutlineCancel } from "react-icons/md";
+import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 
 function WriteBoard() {
   const navigate = useNavigate();
@@ -16,7 +18,7 @@ function WriteBoard() {
   const handleSubmit = async (e:React.FormEvent) => {
     e.preventDefault();
 
-    const token = localStorage.getItem('access_token');
+    const token = sessionStorage.getItem('access_token');
 
     try {
         const response = await fetch('http://localhost:8000/api/v1/blogs', {
@@ -56,8 +58,8 @@ function WriteBoard() {
             <textarea className={styles.contentArea} onChange={(e) => setContent(e.target.value)}></textarea>
         </div>
         <div className={styles.buttons}>
-            <button type="button" onClick={handleCancel}>취소</button>
-            <button type="submit">완료</button>
+            <button type="button" onClick={handleCancel}> <MdOutlineCancel/> 취소</button>
+            <button type="submit"> <IoIosCheckmarkCircleOutline/> 완료</button>
         </div>
     </form>
   );

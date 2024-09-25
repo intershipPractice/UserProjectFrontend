@@ -28,17 +28,15 @@ function LoginInput() {
       });
 
       const data = await response.json();
-      console.log(data);
       if(response.ok){
         dispatch(login());
-        localStorage.setItem('access_token', data.access_token);
+        sessionStorage.setItem('access_token', data.access_token);
         alert("로그인 성공!");
         navigate("/main");
       }
       if (!response.ok){
         alert("로그인 실패");
       }
-      console.log(response);
 
     }catch (error){
       alert("로그인 실패");

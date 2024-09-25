@@ -17,7 +17,7 @@ function MainTopBar() {
   useEffect(()=> {
     const getName = async () => {
 
-        const token = localStorage.getItem('access_token');
+        const token = sessionStorage.getItem('access_token');
 
         fetch("http://localhost:8000/api/v1/users/profile", {
             method: 'GET',
@@ -33,25 +33,10 @@ function MainTopBar() {
         })
         .then(data=>{
             setUsername(data.nickname);
-            console.log(data.nickname);
         })
-        
-            
-            const response = await fetch("http://localhost:8000/api/v1/users/profile", {
-                method: 'GET',
-                headers: {
-                    'Authorization' : `Bearer ${token}`
-                }
-            });
-            if (response.ok) {
-                const data = response.json();
-            } else {
-                // 서버 응답이 실패일 때의 처리
-                console.log(response);
-        } 
 
     };
-    getName();
+    if(isLoggedIn) {getName(); }
 
   }, []);
 
@@ -70,18 +55,36 @@ function MainTopBar() {
 
   const handleLogout = () => {
     dispatch(logout())
-    localStorage.removeItem('access_token');
+    sessionStorage.removeItem('access_token');
+    navigate("/main");
   }
 
   const gotoLogin = () => {
     navigate("/login");
   }
+
+  const gotoMyPost = () => {
+    navigate("/mypost");
+  }
+
+  const gotoMain = () => {
+    navigate("/main");
+  }
+
+  const gotoMypage = () => {
+    navigate("/mypage");
+  }
+
   return (
 
       <div className={styles.container}>
+        <div className={styles.mainLogo} onClick={gotoMain}>HUSTATION</div>
       {isLoggedIn? (
-        <>{username} 님
-          <button className={styles.profileBtn} onClick={handleClick}><AccountCircleIcon style={{width:"40px", height:"40px"}}/></button>
+        <div>
+          <div className={styles.user}>
+            <p>{username} 님</p>
+            <button className={styles.profileBtn} onClick={handleClick}><AccountCircleIcon style={{width:"40px", height:"40px"}}/></button>
+          </div>
           <Menu
             id="basic-menu"
             anchorEl={anchorEl}
@@ -91,12 +94,10 @@ function MainTopBar() {
               'aria-labelledby': 'basic-button',
             }}
           >
-            <MenuItem onClick={handleClose}>마이 페이지</MenuItem>
-            <MenuItem onClick={handleLogout}>내 게시물</MenuItem>
-            <MenuItem onClick={handleLogout}>채팅</MenuItem>
+            <MenuItem onClick={gotoMypage}>마이 페이지</MenuItem>
             <MenuItem onClick={handleLogout}>로그아웃</MenuItem>
           </Menu>
-        </>
+        </div>
       ) : (
         <button className={styles.loginBtn} onClick={gotoLogin}>로그인</button>
       )}

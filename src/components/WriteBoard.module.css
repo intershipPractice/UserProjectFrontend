@@ -57,12 +57,13 @@ p{
 }
 
 button{
-    width: 50px;
+    width: 60px;
     height: 30px;
     margin: 8px;
     border: 1px solid #b2b2b2;
     border-radius: 20px;
     background-color: transparent;
     cursor: pointer;
+    align-items: center;
 
 }

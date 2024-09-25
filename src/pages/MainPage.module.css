@@ -4,11 +4,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
 }
 
 .mainbox{
     width: 1728px;
     height:100vh;
-    border: 1px solid blue;
+}
+
+.writeBtn{
+    margin: 30px 0px 10px 30px;
+    width: 100px;
 }
